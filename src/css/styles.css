@@ -1,25 +1,147 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-@import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
+.container {
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+.input-field {
+  width: 272px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.btn-search {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 91px;
+  background: #4e75ff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-search:hover {
+  background: #3b5ecf;
+}
+
+.btn-load-more {
+  margin-top: 32px; /* Відступ від галереї */
+  text-align: center; /* Центруємо вміст */
+  margin-left: auto; /* Автоматичне центрування по горизонталі */
+  margin-right: auto; /* Автоматичне центрування по горизонталі */
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 125px;
+  background: #4e75ff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-load-more:hover {
+  background: #3b5ecf;
+}
+
+.end-message {
+  margin-top: 32px; /* Відступ від галереї */
+  text-align: center; /* Центруємо вміст */
+  margin-left: auto; /* Автоматичне центрування по горизонталі */
+  margin-right: auto;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+.gallery {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(360px, 1fr)
+  ); /* Автоматично адаптуємо кількість колонок з мінімальною шириною 360px */
+  grid-gap: 24px;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Зображення зберігає пропорції і вписується в елемент */
+  display: block;
+  border-radius: 5px 5px 0 0;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.details {
+  padding: 10px;
+  background-color: rgba(
+    240,
+    240,
+    240,
+    0.8
+  ); /* Прозорий фоновий колір розділу деталей */
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-radius: 0 0 5px 5px;
+}
+
+.details p {
+  margin: 5px 0;
+  text-decoration: none;
+}
+
+.loader-container {
+  display: none; /* Початково ховаємо loader */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7); /* Півпрозорий білий фон */
+  z-index: 1000; /* Висока з-index, щоб loader був поверх усіх елементів */
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 8px solid #f3f3f3; /* Світлий колір для обведення */
+  border-top: 8px solid #3498db; /* Синій колір для верхньої частини loader */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite; /* Анімація обертання */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
