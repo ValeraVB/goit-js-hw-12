@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixabay Image Search</title>
+    
+    <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-b0d10f48.js">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-1cd1f9d9.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-5a426794.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pixabay Image Search</h1>
+      <form id="search-form">
+        <input
+          type="text"
+          class="input-field"
+          id="search-input"
+          placeholder="Enter your search term"
+        />
+        <button type="submit" class="btn-search">Search</button>
+      </form>
+      <div id="gallery" class="gallery">
+        <!-- Сюди будуть додані зображення з JavaScript -->
+      </div>
+      <div class="loader-container" id="loaderContainer" style="display: none">
+        <div class="loader"></div>
+      </div>
+
+      <button id="loadMoreBtn" class="btn-load-more" style="display: none">
+        Load more
+      </button>
+
+      <p id="endMessage" class="end-message" style="display: none">
+        We're sorry, but you've reached the end of search results.
+      </p>
+    </div>
+
+    
+    
+    
+  </body>
+</html>
