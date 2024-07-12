@@ -31,10 +31,10 @@
 }
 
 .btn-load-more {
-  margin-top: 32px; /* Відступ від галереї */
-  text-align: center; /* Центруємо вміст */
-  margin-left: auto; /* Автоматичне центрування по горизонталі */
-  margin-right: auto; /* Автоматичне центрування по горизонталі */
+  margin-top: 32px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   border: none;
   border-radius: 8px;
   padding: 8px 16px;
@@ -51,9 +51,9 @@
 }
 
 .end-message {
-  margin-top: 32px; /* Відступ від галереї */
-  text-align: center; /* Центруємо вміст */
-  margin-left: auto; /* Автоматичне центрування по горизонталі */
+  margin-top: 32px;
+  text-align: center;
+  margin-left: auto;
   margin-right: auto;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -82,10 +82,8 @@
 
 .gallery-item img {
   width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover; /* Зображення зберігає пропорції і вписується в елемент */
+  height: 200px;
+  object-fit: cover; /* Зображення зберігає пропорції та вписується в елемент */
   display: block;
   border-radius: 5px 5px 0 0;
 }
@@ -95,7 +93,7 @@
 }
 
 .details {
-  padding: 10px;
+  padding: 8px;
   background-color: rgba(
     240,
     240,
@@ -108,8 +106,19 @@
   border-radius: 0 0 5px 5px;
 }
 
+.details .detail-row {
+  flex: 0 1 50%; /* Одинака ширина для двох стовпців */
+  margin-bottom: 5px;
+}
+
 .details p {
   margin: 5px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
   text-decoration: none;
 }
 

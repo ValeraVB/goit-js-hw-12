@@ -19,7 +19,7 @@ const endMessage = document.querySelector('#endMessage');
 let searchTerm = '';
 let currentPage = 1;
 let totalHits = 0;
-let cardHeight = 0; // Висота карточки галереї
+let cardHeight = 0; // Висота картки галереї
 
 searchForm.addEventListener('submit', async function (event) {
   event.preventDefault();
@@ -27,7 +27,7 @@ searchForm.addEventListener('submit', async function (event) {
   searchTerm = searchInput.value.trim();
 
   if (searchTerm === '') {
-    displayErrorToast('Будь ласка, введіть пошуковий запит');
+    displayErrorToast('Please enter a search term');
     return;
   }
 
@@ -50,22 +50,34 @@ searchForm.addEventListener('submit', async function (event) {
       const galleryItem = document.createElement('div');
       galleryItem.classList.add('gallery-item');
       galleryItem.innerHTML = `
-        <a href="${image.largeImageURL}" data-lightbox="image">
-          <img src="${image.webformatURL}" alt="${image.tags}">
-          <div class="details">
-            <p>Likes: ${image.likes}</p>
-            <p>Views: ${image.views}</p>
-            <p>Comments: ${image.comments}</p>
-            <p>Downloads: ${image.downloads}</p>
-          </div>
-        </a>
-      `;
+    <a href="${image.largeImageURL}" data-lightbox="image">
+      <img src="${image.webformatURL}" alt="${image.tags}">
+      <div class="details">
+        <div class="detail-row">
+          <p>Likes:</p>
+          <p>${image.likes}</p>
+        </div>
+        <div class="detail-row">
+          <p>Views:</p>
+          <p>${image.views}</p>
+        </div>
+        <div class="detail-row">
+          <p>Comments:</p>
+          <p>${image.comments}</p>
+        </div>
+        <div class="detail-row">
+          <p>Downloads:</p>
+          <p>${image.downloads}</p>
+        </div>
+      </div>
+    </a>
+  `;
       gallery.appendChild(galleryItem);
     });
 
     lightbox.refresh(); // Оновлюємо SimpleLightbox після додавання нових елементів
 
-    // Отримуємо висоту першої карточки
+    // Отримуємо висоту першої картки
     if (gallery.children.length > 0) {
       const firstCard = gallery.children[0];
       const rect = firstCard.getBoundingClientRect();
@@ -74,7 +86,7 @@ searchForm.addEventListener('submit', async function (event) {
 
     // Плавне прокручування сторінки
     window.scrollBy({
-      top: cardHeight * 2, // Прокручуємо на дві висоти карточки
+      top: cardHeight * 2, // Прокручуємо на дві висоти картки
       behavior: 'smooth', // Плавна анімація
     });
 
@@ -88,10 +100,8 @@ searchForm.addEventListener('submit', async function (event) {
     }
   } catch (error) {
     hideLoader();
-    console.error('Помилка пошуку зображень:', error);
-    displayErrorToast(
-      'Не вдалося отримати зображення. Будь ласка, спробуйте ще раз пізніше.'
-    );
+    console.error('Error fetching images:', error);
+    displayErrorToast('Failed to fetch images. Please try again later.');
   }
 });
 
@@ -106,7 +116,8 @@ loadMoreBtn.addEventListener('click', async function () {
     hideLoader();
 
     if (images.length === 0) {
-      displayNoResultsMessage();
+      loadMoreBtn.style.display = 'none';
+      endMessage.style.display = 'block';
       return;
     }
 
@@ -114,16 +125,28 @@ loadMoreBtn.addEventListener('click', async function () {
       const galleryItem = document.createElement('div');
       galleryItem.classList.add('gallery-item');
       galleryItem.innerHTML = `
-        <a href="${image.largeImageURL}" data-lightbox="image">
-          <img src="${image.webformatURL}" alt="${image.tags}">
-          <div class="details">
-            <p>Likes: ${image.likes}</p>
-            <p>Views: ${image.views}</p>
-            <p>Comments: ${image.comments}</p>
-            <p>Downloads: ${image.downloads}</p>
-          </div>
-        </a>
-      `;
+    <a href="${image.largeImageURL}" data-lightbox="image">
+      <img src="${image.webformatURL}" alt="${image.tags}">
+      <div class="details">
+        <div class="detail-row">
+          <p>Likes:</p>
+          <p>${image.likes}</p>
+        </div>
+        <div class="detail-row">
+          <p>Views:</p>
+          <p>${image.views}</p>
+        </div>
+        <div class="detail-row">
+          <p>Comments:</p>
+          <p>${image.comments}</p>
+        </div>
+        <div class="detail-row">
+          <p>Downloads:</p>
+          <p>${image.downloads}</p>
+        </div>
+      </div>
+    </a>
+  `;
       gallery.appendChild(galleryItem);
     });
 
@@ -131,20 +154,18 @@ loadMoreBtn.addEventListener('click', async function () {
 
     // Плавне прокручування сторінки
     window.scrollBy({
-      top: cardHeight * 2, // Прокручуємо на дві висоти карточки
-      behavior: 'smooth', // Плавна анімація
+      top: cardHeight * 2, // Прокручиваем на две высоты карточки
+      behavior: 'smooth', // Плавная анимация
     });
 
-    // Перевіряємо, чи показувати кнопку "Load more" або повідомлення про кінець
+    // Перевіряємо, чи показувати кнопку "Load more"
     if (gallery.children.length >= totalHits) {
       loadMoreBtn.style.display = 'none';
       endMessage.style.display = 'block';
     }
   } catch (error) {
     hideLoader();
-    console.error('Помилка завантаження додаткових зображень:', error);
-    displayErrorToast(
-      'Не вдалося завантажити додаткові зображення. Будь ласка, спробуйте ще раз пізніше.'
-    );
+    console.error('Error fetching more images:', error);
+    displayErrorToast('Failed to load more images. Please try again later.');
   }
 });

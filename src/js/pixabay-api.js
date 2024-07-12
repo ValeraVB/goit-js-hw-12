@@ -12,7 +12,7 @@ export async function fetchImages(query, page = 1, perPage = 15) {
     const response = await axios.get(url);
 
     if (response.status !== 200) {
-      throw new Error('Запит завершився з помилкою ' + response.status);
+      throw new Error('The request failed with an error' + response.status);
     }
 
     const total = response.data.totalHits || 0;
@@ -20,7 +20,7 @@ export async function fetchImages(query, page = 1, perPage = 15) {
 
     return { images, total };
   } catch (error) {
-    console.error('Помилка при отриманні даних:', error);
+    console.error('Error retrieving data:', error);
     return { images: [], total: 0 };
   }
 }

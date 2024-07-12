@@ -26,13 +26,13 @@ export function displayNoResultsMessage() {
 export function showLoader() {
   const loaderContainer = document.getElementById('loaderContainer');
   if (loaderContainer) {
-    loaderContainer.style.display = 'block'; // Показываем загрузчик
+    loaderContainer.style.display = 'block'; // Показуємо завантажувач
   }
 }
 
 export function hideLoader() {
   const loaderContainer = document.getElementById('loaderContainer');
   if (loaderContainer) {
-    loaderContainer.style.display = 'none'; // Скрываем загрузчик
+    loaderContainer.style.display = 'none'; // Приховуємо завантажувач
   }
 }
