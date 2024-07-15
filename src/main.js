@@ -31,6 +31,8 @@ searchForm.addEventListener('submit', async function (event) {
     return;
   }
 
+  currentPage = 1; // Скидання currentPage на 1 перед початком нового пошуку
+
   clearGallery();
   showLoader();
 
@@ -106,7 +108,7 @@ searchForm.addEventListener('submit', async function (event) {
 });
 
 loadMoreBtn.addEventListener('click', async function () {
-  currentPage++;
+  currentPage++; // Збільшуємо currentPage для завантаження наступної сторінки
 
   showLoader();
 
